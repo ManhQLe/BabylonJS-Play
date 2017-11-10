@@ -1,0 +1,25 @@
+{
+  "name": "babylonjs-play",
+  "version": "1.0.0",
+  "description": "Play with BabylonJS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ManhQLe/BabylonJS-Play.git"
+  },
+  "keywords": [
+    "BabylonJS"
+  ],
+  "author": "Manh Le",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ManhQLe/BabylonJS-Play/issues"
+  },
+  "homepage": "https://github.com/ManhQLe/BabylonJS-Play#readme",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
+}
