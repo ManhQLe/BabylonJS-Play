@@ -5,7 +5,7 @@ const port = 8000;
 const route = require('./router');
 
 app.use(route);
-app.use('/public',express.static(path.join(__dirname,'statics')));
+app.use('/public',express.static(path.join(__dirname,'public')));
 
 app.listen(port,function(){
     console.log(`App started at port ${port}`);

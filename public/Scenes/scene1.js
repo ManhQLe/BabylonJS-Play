@@ -1,3 +1,3 @@
-function Render(){
-    
+function render(){
+    console.log("Render");
 }
