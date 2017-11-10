@@ -12,8 +12,10 @@
 
 <body>
     <canvas id="canvas"></canvas>
-
-    [[PUTSCRIPT]]
+    <script src='/public/scenes/[[SCENE]].js'></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', render);
+    </script>
 
 </body>
 
