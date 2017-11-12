@@ -14,7 +14,17 @@
     <canvas id="canvas"></canvas>
     <script src='/public/scenes/[[SCENE]].js'></script>
     <script>
-        window.addEventListener('DOMContentLoaded', render);
+        window.addEventListener('DOMContentLoaded', 
+        function(){
+            var canvas = document.getElementById("canvas");
+            var engine = new BABYLON.Engine(canvas, true)
+            window.addEventListener('resize', function() {
+                engine.resize();
+            });
+            start(engine,canvas)
+        })
+        
+       
     </script>
 
 </body>
