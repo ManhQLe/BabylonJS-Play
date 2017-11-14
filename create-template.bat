@@ -1,1 +1,1 @@
-xcopy template.js public\Scenes\%1.js /f /y
+copy template.js public\Scenes\%1.js /Y
