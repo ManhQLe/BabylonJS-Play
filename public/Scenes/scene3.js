@@ -31,11 +31,10 @@ function createScene() {
         height: 100,
     }, scene);
 
-    var cam = new BABYLON.FreeCamera('camera', new vec3(0, 100, -100), scene);;
+   ;;
     var light2 = new BABYLON.PointLight("light2", new vec3(0, 10, 0), scene);
-
+    var cam = new BABYLON.FreeCamera('camera', new vec3(0, 100, -100), scene)
     cam.setTarget(vec3.Zero());
-
     cam.attachControl(canvas, false)
     return scene
 }
