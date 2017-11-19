@@ -17,6 +17,8 @@ function createScene(){
     cam.setTarget(vec3.Zero());
     cam.attachControl(canvas, false)
 
+    
+
     return scene
 }
 
