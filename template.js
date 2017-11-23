@@ -26,6 +26,7 @@ function update(){
 
 function render(){
     var scene = createScene();
+    scene.clearColor = new BABYLON.Color4(0,0,0,1);
     engine.runRenderLoop(function(){
         update();
         scene.render();

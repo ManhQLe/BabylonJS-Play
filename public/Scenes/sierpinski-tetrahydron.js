@@ -14,9 +14,7 @@ function CreateTriangle(scene){
     var v1 = new vec3(0,0,10);    
     var v2 = vec3.TransformCoordinates(v1,Rot120);
     var v3 = vec3.TransformCoordinates(v2,Rot120);
-    console.log(v1)
-    console.log(v2)
-    console.log(v3)
+
     var TriangleMesh = new BABYLON.Mesh("tri",scene);
     var buffer = new BABYLON.VertexData();
     buffer.positions = [v1.x,v1.y,v1.z,v2.x,v2.y,v2.z,v3.x,v3.y,v3.z];
