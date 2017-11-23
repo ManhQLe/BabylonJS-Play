@@ -1,5 +1,6 @@
 var engine,canvas
 var vec3 = BABYLON.Vector3
+var color3 = BABYLON.Color3;
 var MeshBuilder = BABYLON.MeshBuilder
 function start(en,c){
     engine = en;
