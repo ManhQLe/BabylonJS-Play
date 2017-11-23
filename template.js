@@ -2,6 +2,7 @@ var engine,canvas
 var vec3 = BABYLON.Vector3
 var color3 = BABYLON.Color3;
 var MeshBuilder = BABYLON.MeshBuilder
+var Matrix = BABYLON.Matrix;
 function start(en,c){
     engine = en;
     canvas = c;
