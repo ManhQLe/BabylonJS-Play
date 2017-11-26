@@ -10,25 +10,58 @@ function start(en,c){
     render();
 }
 
-function CreateTetrahydron(scene){
+function Sierpinski_gasket(scene,v0,v1,v2,v3,iter){
+    var i = 0;
+    var points = [v0,v1,v2,v3];
+    var buffer = new BABYLON.VertexData();
+    buffer.positions = [];
+    buffer.normals=[];
+    buffer.indices = [];
+
+    while(i<iter){
+        var j = Math.pow(4,i++);
+        do{
+            var [a,b,c,d] = points.splice(0,4);
+            var midad = vec3.Center(a,d);
+            var midbd = vec3.Center(b,b);
+            var midcd = vec3.Center(c,b);
+            var midab = vec3.Center(a,b);
+            var midbc = vec3.Center(a,b);
+            var midca = vec3.Center(a,b);
+            
+            points.push(
+                midad,midbd,midcd,d,
+                a,midab,midca,midad,
+                midab,b,midbc,midbd,
+                midbc,c,midca,midcd
+            )
+        }while(--j);
+
+    };
+    return points;
+}
+
+function constructTet(center,r){
     var Rot120 = Matrix.RotationAxis(new vec3(0,1,0),Math.PI*2/3);
-    var v0 = new vec3(0,0,10);    
+    var up = new vec3(0,r,0);
+    var a = r/Math.sqrt(3/8);
+    var h = Math.sqrt(2/3)*a;
+    var v3 = center.add(up);
+ 
+    var centerBase = v3.add(new vec3(0,-h,0));
+    
+    var v0 = centerBase.add(new vec3(0,0,Math.sqrt(a*a-h*h)));    
     var v1 = vec3.TransformCoordinates(v0,Rot120);
     var v2 = vec3.TransformCoordinates(v1,Rot120);
+   
+    return [v0,v1,v2,v3]
+}
 
-    var v3 = vec3.Zero();
-    console.log(v3)
-    v3.addInPlace(v0);
-    v3.addInPlace(v1);
-    v3.addInPlace(v2);
-    v3.scaleInPlace(3);
 
-    var h = vec3.Distance(v0,v1)*Math.sqrt(2/3);
-    var up = vec3.Up();
-    up.scaleInPlace(h);
-    v3.addInPlace(up);
-
-    var Tet = new BABYLON.Mesh("Tet",scene);
+function CreateTetrahydron(scene, center,r){
+    
+    var [v0,v1,v2,v3] = constructTet(center,r);
+   
     var buffer = new BABYLON.VertexData();
     buffer.positions = [
         v0.x,v0.y,v0.z,v1.x,v1.y,v1.z,v2.x,v2.y,v2.z,
@@ -42,9 +75,10 @@ function CreateTetrahydron(scene){
         1,3,2,
         3,0,2
     ];
-    var Norms = [];
+
     BABYLON.VertexData.ComputeNormals(buffer.positions,buffer.indices,buffer.normals);
-    
+
+    var Tet = new BABYLON.Mesh("Tet",scene);
     buffer.applyToMesh(Tet);
     var pbr = new BABYLON.PBRMetallicRoughnessMaterial("pbr", scene);
     pbr.baseColor = new color3( 0.329412, 0.223529, 0.027451 )
@@ -82,7 +116,7 @@ function createScene(){
         height: 100,
     }, scene);
 
-    CreateTetrahydron(scene);
+    CreateTetrahydron(scene,new vec3(0,10,0),8);
     
     return scene
 }
